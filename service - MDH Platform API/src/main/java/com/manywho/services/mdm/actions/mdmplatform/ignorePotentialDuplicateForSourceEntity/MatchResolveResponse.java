@@ -16,7 +16,7 @@ public class MatchResolveResponse implements Type{
 	private String guid;
 
 	@Type.Property(name = "Success", contentType = ContentType.Boolean)
-	private String success;
+	private boolean success;
 	
 	@Type.Property(name = "ID", contentType = ContentType.String)
 	private String id;
@@ -37,9 +37,9 @@ public class MatchResolveResponse implements Type{
 	public MatchResolveResponse(Node document)
 	{
 		this.guid=UUID.randomUUID().toString();
-		this.success=document.selectSingleNode("mdm:MatchResolveResponse/mdm:success").getText();
+		this.success=Boolean.parseBoolean(document.selectSingleNode("mdm:MatchResolveResponse/mdm:success").getText());
 		this.id=document.selectSingleNode("mdm:MatchResolveResponse/mdm:transaction/@id").getText();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS'Z'");
 		try {
 			this.updatedDate=sdf.parse(document.selectSingleNode("mdm:MatchResolveResponse/mdm:transaction/@updatedDate").getText());
 		} catch (ParseException e) {
@@ -53,7 +53,7 @@ public class MatchResolveResponse implements Type{
 		return guid;
 	}
 
-	public String getSuccess() {
+	public boolean getSuccess() {
 		return success;
 	}
 

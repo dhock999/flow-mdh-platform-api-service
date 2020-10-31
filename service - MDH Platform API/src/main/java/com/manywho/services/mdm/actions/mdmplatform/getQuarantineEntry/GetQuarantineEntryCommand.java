@@ -25,7 +25,7 @@ public class GetQuarantineEntryCommand implements ActionCommand<ServiceConfigura
 	public ActionResponse<GetQuarantineEntry.Outputs> execute(ServiceConfiguration configuration, ServiceRequest request,
 			GetQuarantineEntry.Inputs input) {
 
-		String resource = String.format("%s/universe/%s/quarantine/%s", input.getRepositoryID(), input.getUniverseID(), input.getTransactionID());
+		String resource = String.format("%s/universes/%s/quarantine/%s", input.getRepositoryID(), input.getUniverseID(), input.getTransactionID());
 		Document document = AtomsphereAPI.executeAPIXML(configuration, "repositories", "GET", resource, null);
 		QuarantineEntry quarantineRecord = new QuarantineEntry(document);
 

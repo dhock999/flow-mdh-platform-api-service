@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.dom4j.Node;
 import com.manywho.sdk.api.ContentType;
 import com.manywho.sdk.services.types.Type;
+import com.manywho.services.mdm.actions.mdmplatform.Util;
 
 //<mdm:QuarantineEntry transactionId="01234567-89ab-cdef-0123-456789abcdef" sourceId="salesforce" entityId="2" createdDate="2012-07-12T21:45:54Z" 
 //xmlns:mdm="http://mdm.api.platform.boomi.com/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -68,12 +69,14 @@ public class QuarantineEntry implements Type{
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
-		this.transactionId = document.selectSingleNode("@transactionId").getText();
-		this.sourceID = document.selectSingleNode("@sourceId").getText();
-		this.entityId = document.selectSingleNode("@entityId").getText();
-		this.cause = document.selectSingleNode("mdm:cause").getText();
-		this.reason = document.selectSingleNode("mdm:reason").getText();
-		this.entity = document.selectSingleNode("mdm:entity").selectSingleNode("*").asXML();
+		this.transactionId = Util.getSingleNode(document, "@transactionId");
+		this.sourceID = Util.getSingleNode(document, "@sourceId");
+		this.entityId = Util.getSingleNode(document, "@entityId");
+		this.cause = Util.getSingleNode(document, "mdm:cause");
+		this.reason = Util.getSingleNode(document, "mdm:reason");
+		Node node = document.selectSingleNode("mdm:entity").selectSingleNode("*");
+		if (node!=null)
+			this.entity = node.asXML();
 	}
 
 	public String getGuid() {

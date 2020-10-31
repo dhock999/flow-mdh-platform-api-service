@@ -24,7 +24,7 @@ public class GetGoldenRecordPlatformCommand implements ActionCommand<ServiceConf
 	public ActionResponse<GetGoldenRecordPlatform.Outputs> execute(ServiceConfiguration configuration, ServiceRequest request,
 			GetGoldenRecordPlatform.Inputs input) {
 
-		String resource = String.format("%s/universes/%s/records/sources/%s/entities/%s", input.getRepositoryID(), input.getUniverseID(), input.getEntityID());
+		String resource = String.format("%s/universes/%s/records/sources/%s/entities/%s", input.getRepositoryID(), input.getUniverseID(), input.getSourceID(), input.getEntityID());
 		Document document = AtomsphereAPI.executeAPIXML(configuration, "repositories", "GET", resource, null);
 		GoldenRecord goldenRecord = new GoldenRecord(document);
 

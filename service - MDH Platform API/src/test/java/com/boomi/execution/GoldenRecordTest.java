@@ -10,7 +10,7 @@ import com.manywho.services.mdm.actions.mdmplatform.getGoldenRecordForSourceEnti
 
 class GoldenRecordTest {
 
-	String expectedXML = "<mdm:Record updatedDate=\"02-05-2014T08:44:47.000-0400\" createdDate=\"04-23-2012T14:30:26.000-0400\" \r\n" + 
+	String expectedXML = "<mdm:Record updatedDate=\"02-05-2014T08:44:47'Z'\" createdDate=\"04-23-2012T14:30:26'Z'\" \r\n" + 
 			"  recordId=\"d5742c16-5318-4ba7-8815-3267a7a55358\" xmlns:mdm=\"http://mdm.api.platform.boomi.com/\" \r\n" + 
 			"  xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n" + 
 			"   <mdm:data>\r\n" + 
@@ -24,7 +24,7 @@ class GoldenRecordTest {
 			"</mdm:Record> ";
 	@Test
 	void testResponse() throws DocumentException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ssZ");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
 		Document document = DocumentHelper.parseText(expectedXML);
 		GoldenRecord item = new GoldenRecord(document);
 		assertEquals("d5742c16-5318-4ba7-8815-3267a7a55358", item.getRecordId());

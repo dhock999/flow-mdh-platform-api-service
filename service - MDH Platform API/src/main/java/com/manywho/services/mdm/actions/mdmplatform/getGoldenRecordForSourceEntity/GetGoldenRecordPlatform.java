@@ -15,6 +15,9 @@ public class GetGoldenRecordPlatform {
 		@Action.Input(name = "Entity ID", contentType = ContentType.String, required = true)
 	    private String entityID;
 
+		@Action.Input(name = "Source ID", contentType = ContentType.String, required = true)
+	    private String sourceID;
+
 	    public String getRepositoryID() {
 			return repositoryID;
 		}
@@ -25,6 +28,10 @@ public class GetGoldenRecordPlatform {
 
 		public String getEntityID() {
 			return entityID;
+		}
+
+		public String getSourceID() {
+			return sourceID;
 		}
 	}
 	

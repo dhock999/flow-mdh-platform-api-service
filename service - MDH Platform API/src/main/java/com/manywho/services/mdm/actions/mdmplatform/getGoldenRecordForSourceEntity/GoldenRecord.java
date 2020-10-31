@@ -52,7 +52,7 @@ public class GoldenRecord implements Type{
 	
 	public GoldenRecord(Node document)
 	{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSSZ");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'Z'");
 		document = document.selectSingleNode("mdm:Record");
 		this.guid=UUID.randomUUID().toString();
 		try {
@@ -70,9 +70,9 @@ public class GoldenRecord implements Type{
 			throw new RuntimeException(e);
 		}
 		try {
-			Node date = document.selectSingleNode("@createdDate");
+			Node date = document.selectSingleNode("@updatedDate");
 			if (date!=null)
-				this.createdDate = sdf.parse(date.getText());
+				this.updatedDate = sdf.parse(date.getText());
 		} catch (ParseException e) {
 			throw new RuntimeException(e);
 		}
