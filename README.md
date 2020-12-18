@@ -1,6 +1,6 @@
 Boomi MDH Platform API Flow Service
 
-# Boomi Boomi MDH API Flow Service
+# Boomi MDH API Flow Service
 
 The Boomi MDH API Flow Service enables direct access to the Boomi Integration and Boomi API Manager API. 
 Overview
